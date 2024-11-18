@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="#" alt="">
+    <form class="form">
+        <input type="text" id="search" name="searchEntry" placeholder="Search...">
+        <button type="button" id="refresh" onclick="computeSearch()">View gif</button>
+    </form>
+    
+<script>
+    const button = document.getElementById("refresh");
+
+    function computeSearch() {
+        search = document.getElementById('search').value;
+        const img = document.querySelector('img');
+        fetch(`https://api.giphy.com/v1/gifs/translate?api_key=mEWWF2X1VVXJfBLEzkxDlD5x0hsBtGca&s=${search}`, {mode: 'cors'})
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(response) {
+            img.src = response.data.images.original.url;
+
+        });
+    }
+</script>   
+
+</body>
+</html>
